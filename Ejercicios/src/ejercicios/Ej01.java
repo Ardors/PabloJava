@@ -17,6 +17,8 @@ public class Ej01 {
 		JOptionPane.showMessageDialog(null, "a vale: " + a);
 		JOptionPane.showMessageDialog(null, "n+a vale: " + (a + n));
 		JOptionPane.showMessageDialog(null, "a-n vale: " + (a - n));
+		
+	
 	}
 
 }
