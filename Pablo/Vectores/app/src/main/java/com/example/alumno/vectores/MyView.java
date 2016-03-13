@@ -8,18 +8,15 @@ import java.util.ArrayList;
 public class MyView extends View {
 
     private ArrayList<Dibujable> dibujables = new ArrayList<Dibujable>();
-    Punto p1 = new Punto (250,250);
+    Punto p1 = new Punto (150,200);
+
+
 
     public MyView(Context context){
         super(context);
 
-        for(int i=0;i<10;i++){
-            Punto p = new Punto(200,100);
-            p.rotar(p1, i*36);
-            Dibujable d = new Ovalo(p,50,50);
-            dibujables.add(d);
-        }
-
+        Rectangulo rect = new Rectangulo(p1,200,300);
+        dibujables.add(rect);
 
 
     }
@@ -27,7 +24,6 @@ public class MyView extends View {
     @Override
     public void onDraw(Canvas c){
         super.onDraw(c);
-
 
         for(Dibujable d:dibujables){
             d.dibujar(c);

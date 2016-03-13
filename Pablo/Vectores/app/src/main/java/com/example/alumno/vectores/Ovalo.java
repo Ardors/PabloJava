@@ -21,7 +21,7 @@ public class Ovalo extends Dibujable{
 
     @Override
     public void dibujar(Canvas c) {
-        c.drawOval(new RectF((getX()-ancho/2),(getY()-alto/2),(getX()+ancho/2),(getY()+alto/2)),getPaint());
+        c.drawOval(new RectF((getX()-ancho/2),(getY()-alto/2),(getX()+ancho/2),(getY()+alto/2)),getColor());
     }
 
 }
