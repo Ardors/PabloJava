@@ -34,7 +34,7 @@ public class MyView extends View {
 
         long tact2 = System.currentTimeMillis();
         float tt2 = (tact2 - tult2);
-        if(tt2>2000){
+        if(tt2>800){
             tult2=tact2;
             Bala p = new Bala(uno.x,uno.y);
             balas.add(p);

@@ -11,7 +11,7 @@ public class Punto {
     }
 
     public void rotar(Punto a, float ang){
-       // p x = cos(theta) * (px-ox) - sin(theta) * (py-oy) + ox
+        // p x = cos(theta) * (px-ox) - sin(theta) * (py-oy) + ox
         //p y = sin(theta) * (px-ox) + cos(theta) * (py- oy) + oy
         float nx = x;
         float ny = y;
