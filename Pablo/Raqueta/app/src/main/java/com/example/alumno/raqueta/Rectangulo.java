@@ -1,4 +1,4 @@
-package com.example.alumno.vectores;
+package com.example.alumno.raqueta;
 
 import android.graphics.Canvas;
 import android.graphics.RectF;
