@@ -5,7 +5,7 @@ public class Raqueta extends Rectangulo{
     private float ancho;
 
     public Raqueta(float x, float ancho) {
-        super(x,Main.alto-100, ancho, 30);
+        super(x,Main.alto-Main.alto/12, ancho, Main.alto/45);
         this.ancho=ancho;
     }
 
