@@ -18,6 +18,10 @@ public class MyView extends View {
     Ladrillo l1 = new Ladrillo(0,0);
     Ladrillo l2 = new Ladrillo(2,1);
     Ladrillo l3 = new Ladrillo(4,0);
+    Ladrillo l4 = new Ladrillo(7,5);
+    Ladrillo l5 = new Ladrillo(6,3);
+    Ladrillo l6 = new Ladrillo(2,8);
+    Ladrillo l7 = new Ladrillo(7,1);
 
     public MyView(Context context){
         super(context);
@@ -43,14 +47,14 @@ public class MyView extends View {
 
     public void touchDown(MotionEvent event){
         float x = event.getX();
-        if(x<Main.ancho/2){
+        if(x<raqueta.getX()+raqueta.getAncho()/2){
             raqueta.setVx(-5);
             if(inicio==true){
                 pelota.setVelocidad(-5,-5);
                 inicio=false;
             }
         }
-        if(x>Main.ancho/2){
+        if(x>raqueta.getX()+raqueta.getAncho()/2){
             raqueta.setVx(5);
             if(inicio == true){
                 pelota.setVelocidad(5,-5);
@@ -67,17 +71,26 @@ public class MyView extends View {
         super.onDraw(c);
 
         raqueta.mover();
-        pelota.mover(raqueta.getX(),raqAncho);
+        pelota.mover(raqueta);
 
         pelota.dibujar(c);
         raqueta.dibujar(c);
         l1.dibujar(c);
         l2.dibujar(c);
         l3.dibujar(c);
+        l4.dibujar(c);
+        l5.dibujar(c);
+        l6.dibujar(c);
+        l7.dibujar(c);
 
         l1.comprobarColision(pelota);
         l2.comprobarColision(pelota);
         l3.comprobarColision(pelota);
+        l4.comprobarColision(pelota);
+        l5.comprobarColision(pelota);
+        l6.comprobarColision(pelota);
+        l7.comprobarColision(pelota);
+
 
         postInvalidate();
     }

@@ -1,7 +1,5 @@
 package com.example.alumno.raqueta;
 
-import android.util.Log;
-
 public class Ladrillo extends Rectangulo{
 
     float ancho = Main.ancho/8;

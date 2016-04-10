@@ -23,7 +23,7 @@ public class Pelota extends  Ovalo{
         return radio;
     }
 
-    public void mover(float raqX,float raqAncho) {
+    public void mover(Raqueta r) {
         if (getX() >= radio && getX() <= Main.ancho - radio) {
             setX(getX() + getVx());
         }
@@ -43,9 +43,14 @@ public class Pelota extends  Ovalo{
             invertirVy();
         }
         if (getY() > Main.alto - Main.alto / 12 - radio) {
-            if (getX() >= raqX && getX() <= raqX + raqAncho && perdida == false) {
+            if (getX() >= r.getX() && getX() <= r.getX() + r.getAncho() && perdida == false) {
                 setY(Main.alto - Main.alto / 12 - radio);
                 invertirVy();
+                    if(r.getVx()<0 && r.getX()>0){
+                        setVx(getVx()-2);
+                    }else if(r.getVx()>0 && r.getX()+r.getAncho()<Main.ancho){
+                        setVx(getVx()+2);
+                    }
             } else {
                 perdida = true;
             }

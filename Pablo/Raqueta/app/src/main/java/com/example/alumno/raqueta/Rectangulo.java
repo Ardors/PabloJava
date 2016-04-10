@@ -23,6 +23,13 @@ public class Rectangulo extends Dibujable{
         return p.getX() < getX()+ancho && p.getY() < getY()+alto && p.getX() < getX() && p.getY() < getY();
     }
 
+    public float getAncho(){
+        return ancho;
+    }
+    public float getAlto(){
+        return alto;
+    }
+
     @Override
     public void dibujar(Canvas c) {
         c.drawRect((getX()),(getY()),(getX()+ancho),(getY()+alto),getColor());
