@@ -29,6 +29,9 @@ public abstract class Dibujable {
     public float getY(){
         return posicion.getY();
     }
+    public Punto getPosicion(){
+        return posicion;
+    }
 
     public void setX(float x){
         posicion.setX(x);
@@ -80,6 +83,9 @@ public abstract class Dibujable {
     }
     public void setVy(float y){
         velocidad.setY(y);
+    }
+    public Vector getVelocidad() {
+        return velocidad;
     }
     public float getVx(){
         return velocidad.getX();

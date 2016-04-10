@@ -76,6 +76,8 @@ public class MyView extends View {
         l3.dibujar(c);
 
         l1.comprobarColision(pelota);
+        l2.comprobarColision(pelota);
+        l3.comprobarColision(pelota);
 
         postInvalidate();
     }
