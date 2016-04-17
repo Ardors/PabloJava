@@ -11,8 +11,6 @@ public class MyView extends View {
     private boolean inicio = true;
     float raqAncho = Main.ancho/4;
     float pelRadio = Main.ancho/40;
-    float ladAncho = Main.ancho/8;
-    float ladAlto = Main.alto/32;
     Raqueta raqueta = new Raqueta(Main.ancho/2-raqAncho/2,raqAncho);
     Pelota pelota;
     Ladrillo l1 = new Ladrillo(0,0);
@@ -25,8 +23,6 @@ public class MyView extends View {
 
     public MyView(Context context){
         super(context);
-
-
 
         pelota = new Pelota(Main.ancho/2,Main.alto-Main.alto/12-pelRadio,pelRadio,this);
         setOnTouchListener(new OnTouchListener() {
@@ -102,9 +98,4 @@ public class MyView extends View {
         raqueta.setVelocidad(0, 0);
         inicio = true;
     }
-
-
-
-
-
 }
