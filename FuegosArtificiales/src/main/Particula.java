@@ -22,8 +22,8 @@ public class Particula {
 		g.drawLine((int)(posicion.x), (int)(posicion.y), (int)(posicion.x+velocidad.x*50), (int)(posicion.y+velocidad.y*50));
 		posicion.x+=velocidad.x;
 		posicion.y+=velocidad.y;
-		velocidad.x*=0.998;
-		velocidad.y*=0.998;
+		velocidad.x*=0.995;
+		velocidad.y*=0.995;
 		
 		velocidad.y += 0.00015;
 	}
