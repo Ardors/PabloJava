@@ -9,8 +9,8 @@ public class Personaje {
 	float radio;
 	float x;
 	float y;
-	float vy;
-	float vx;
+	float vy=0;
+	float vx=0;
 	boolean arriba = false;
 	boolean abajo = false;
 	boolean derecha = false;
@@ -19,6 +19,7 @@ public class Personaje {
 	protected boolean disparando;
 	private long cadencia = 200;
 	private long tud;
+	protected boolean frenando;
 
 	public Personaje(float radio, float x, float y){
 		this.radio = radio;
@@ -27,30 +28,63 @@ public class Personaje {
 	}
 
 	public void mover(Graphics g){
+		if(frenando){
+			arriba = vy>0.001;
+			abajo = vy<-0.001;
+			derecha = vx<-0.001;
+			izquierda = vx>0.001;
+			
+		}
 		if(arriba){
-			if(y>0+radio){
-				y-=1;
-			}
+			vy-=0.001;
 		}
 		if(abajo){
-			if(y<Ventana.screenSize.height-radio){
-				y+=1;
-			}
+			vy+=0.001;
 		}
 		if(izquierda){
-			if(x>0+radio){
-				x-=1;
-			}
+			vx-=0.001;
+			
 		}
 		if(derecha){
-			if(x<Ventana.screenSize.width-radio){
-				x+=1;
-			}
+			vx+=0.001;
+			
 		}
 		
+		
+		if(y>=radio){
+			y += vy;
+		}else{
+			y = radio;
+			vy=0;
+		}
+		
+		if(y<Ventana.screenSize.height-radio){
+			y += vy;
+		}else{
+			y = Ventana.screenSize.height-radio;
+			vy=0;
+		}
+		
+		if(x>=radio){
+			x += vx;
+		}else{
+			x = radio;
+			vx=0;
+		}
+		
+		if(x<Ventana.screenSize.width-radio){
+			x += vx;
+		}else{
+			x = Ventana.screenSize.width-radio;
+			vx = 0;
+		}
+		
+		vy*=0.999;
+		vx*=0.999;
 		
 		
 	}
+	
 	public void disparar(){
 		balas.add(new Bala(10,x,y,0,-1));
 		disparoEspecial();
@@ -70,8 +104,7 @@ public class Personaje {
 		for(Bala b : balas){
 			b.mover();
 			b.dibujar(g);
-			//TODO: los limites derechi izquierdo y abajo
-			if(b.y<-b.radio){
+			if(b.y<-b.radio || b.y>Ventana.screenSize.height-b.radio || b.x<-b.radio || b.x>Ventana.screenSize.width-b.radio){
 				muertas.add(b);
 			}
 		}
@@ -107,7 +140,7 @@ public class Personaje {
 				g.fillOval((int)(x-radio+this.radio+7*i), (int)(y-radio), (int)(radio*2), (int)(radio*2));
 			}
 		}
-
+		
 	}
 
 	private boolean puedeDisparar() {
@@ -118,9 +151,9 @@ public class Personaje {
 	
 	public void disparoEspecial(){
 		
-		for(int i=0;i<36;i++){
-			float vx = (float) Math.cos(Math.toRadians(i*10));
-			float vy = (float) Math.sin(Math.toRadians(i*10));
+		for(int i=0;i<18;i++){
+			float vx = (float) Math.cos(Math.toRadians(i*20));
+			float vy = (float) Math.sin(Math.toRadians(i*20));
 			balas.add(new Bala(10,x,y,vx,vy));
 		}
 		

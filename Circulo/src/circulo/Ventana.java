@@ -43,6 +43,9 @@ public class Ventana extends JFrame{
 				if(e.getKeyCode() == KeyEvent.VK_SPACE){
 					c.disparando = true;
 				}
+				if(e.getKeyCode() == KeyEvent.VK_B){
+					c.frenando = true;
+				}
 			}
 			public void keyReleased (KeyEvent e){
 				
@@ -60,6 +63,13 @@ public class Ventana extends JFrame{
 				}
 				if(e.getKeyCode() == KeyEvent.VK_SPACE){
 					c.disparando = false;
+				}
+				if(e.getKeyCode() == KeyEvent.VK_B){
+					c.frenando = false;
+					c.izquierda=false;
+					c.derecha=false;
+					c.abajo=false;
+					c.arriba=false;
 				}
 			}
 			
