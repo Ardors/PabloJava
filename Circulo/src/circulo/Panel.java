@@ -5,31 +5,25 @@ import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
+
 public class Panel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	
-	Circulo c;
+	private Ventana v;
 
-	public Panel(Circulo c){
+	public Panel(Ventana v){
 		setBackground(Color.BLACK);
-		this.c = c;
+		this.v = v;
 		
-		Thread t = new Thread(new Runnable(){
-			@Override
-			public void run(){
-				while(true){
-					repaint();
-				}
-			}
-		});
-		t.start();	
 	}
 	
 	@Override
 	public void paint(Graphics g){
 		super.paint(g);
-		c.mover(g);
-		c.dibujar(g);
+		v.c.mover(g);
+		v.c.dibujar(g);
+		
+		repaint();
 	}
 }

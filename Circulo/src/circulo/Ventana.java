@@ -1,5 +1,7 @@
 package circulo;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -9,11 +11,13 @@ public class Ventana extends JFrame{
 
 	private static final long serialVersionUID = 1L;
 	
-	Circulo c = new Circulo(50, 200,200);
+	public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	
+	Personaje c = new Personaje(50, 200,200);
 
 	public Ventana(){
 		setExtendedState(MAXIMIZED_BOTH);
-		setContentPane(new Panel(c));
+		setContentPane(new Panel(this)); 
 		setUndecorated(true);
 		setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -25,31 +29,37 @@ public class Ventana extends JFrame{
 					System.exit(0);
 				}
 				if(e.getKeyCode() == KeyEvent.VK_UP){
-					c.vy=-1;
+					c.arriba=true;
 				}
 				if(e.getKeyCode() == KeyEvent.VK_DOWN){
-					c.vy=+1;
+					c.abajo=true;
 				}
 				if(e.getKeyCode() == KeyEvent.VK_RIGHT){
-					c.vx=+1;
+					c.derecha=true;
 				}
 				if(e.getKeyCode() == KeyEvent.VK_LEFT){
-					c.vx=-1;
+					c.izquierda=true;
+				}
+				if(e.getKeyCode() == KeyEvent.VK_SPACE){
+					c.disparando = true;
 				}
 			}
 			public void keyReleased (KeyEvent e){
 				
 				if(e.getKeyCode() == KeyEvent.VK_UP){
-					c.vy=0;
+					c.arriba=false;
 				}
 				if(e.getKeyCode() == KeyEvent.VK_DOWN){
-					c.vy=0;
+					c.abajo=false;
 				}
 				if(e.getKeyCode() == KeyEvent.VK_RIGHT){
-					c.vx=0;
+					c.derecha=false;
 				}
 				if(e.getKeyCode() == KeyEvent.VK_LEFT){
-					c.vx=0;
+					c.izquierda=false;
+				}
+				if(e.getKeyCode() == KeyEvent.VK_SPACE){
+					c.disparando = false;
 				}
 			}
 			
