@@ -10,6 +10,7 @@ public class Bala {
 	float vx;
 	float vy;
 	private double a;
+	private long ut;
 	
 	public Bala(float radio, float x, float y, float vx, float vy){
 		this.radio = radio;
@@ -18,9 +19,10 @@ public class Bala {
 		this.vx = vx;
 		this.vy = vy;
 	}
-	public void mover(){
-		x=x+vx;
-		y=y+vy;
+	public void mover(float tt){
+		x=x+vx*tt;
+		y=y+vy*tt;
+		
 	}
 	public void dibujar(Graphics g){
 		int r=(int)(((Math.cos(a)+1)/2.0)*128);

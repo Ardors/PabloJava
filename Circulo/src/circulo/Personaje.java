@@ -20,6 +20,7 @@ public class Personaje {
 	private long cadencia = 200;
 	private long tud;
 	protected boolean frenando;
+	public float potencia = 0.001f;
 
 	public Personaje(float radio, float x, float y){
 		this.radio = radio;
@@ -27,82 +28,59 @@ public class Personaje {
 		this.y = y;
 	}
 
-	public void mover(Graphics g){
+	public void mover(float tt){
 		if(frenando){
-			arriba = vy>0.001;
-			abajo = vy<-0.001;
-			derecha = vx<-0.001;
-			izquierda = vx>0.001;
+			arriba = vy>potencia*tt;
+			abajo = vy<-potencia*tt;
+			derecha = vx<-potencia*tt;
+			izquierda = vx>potencia*tt;
 			
 		}
 		if(arriba){
-			vy-=0.001;
+			vy-=potencia*tt;
 		}
 		if(abajo){
-			vy+=0.001;
+			vy+=potencia*tt;
 		}
 		if(izquierda){
-			vx-=0.001;
+			vx-=potencia*tt;
 			
 		}
 		if(derecha){
-			vx+=0.001;
+			vx+=potencia*tt;
 			
 		}
 		
+		y += vy*tt;
+		x += vx*tt;
 		
-		if(y>=radio){
-			y += vy;
-		}else{
-			y = radio;
-			vy=0;
-		}
-		
-		if(y<Ventana.screenSize.height-radio){
-			y += vy;
-		}else{
-			y = Ventana.screenSize.height-radio;
-			vy=0;
-		}
-		
-		if(x>=radio){
-			x += vx;
-		}else{
-			x = radio;
-			vx=0;
-		}
-		
-		if(x<Ventana.screenSize.width-radio){
-			x += vx;
-		}else{
-			x = Ventana.screenSize.width-radio;
-			vx = 0;
-		}
-		
-		vy*=0.999;
-		vx*=0.999;
+		//vy*=0.999;
+		//vx*=0.999;
 		
 		
 	}
 	
 	public void disparar(){
-		balas.add(new Bala(10,x,y,0,-1));
+		float x = Ventana.screenSize.width/2;
+		float y = Ventana.screenSize.height/2;
+		//balas.add(new Bala(10,x,y,0,-1));
 		disparoEspecial();
 	}
 
-	public void dibujar(Graphics g){
+	public void dibujar(Graphics g, float tt){
 		if(disparando && puedeDisparar()){
 			tud = System.currentTimeMillis();
 			disparar();
 		}
 		g.setColor(Color.WHITE);
-		g.fillOval((int)(x-radio), (int)(y-radio), (int)(radio*2), (int)(radio*2));
+		
+		g.fillOval((int)(Ventana.screenSize.width/2-radio), (int)(Ventana.screenSize.height/2-radio), (int)(radio*2), (int)(radio*2));
 
 		dibujarMotores(g);
 
 		ArrayList<Bala>muertas = new ArrayList<>();
 		for(Bala b : balas){
-			b.mover();
+			b.mover(tt);
 			b.dibujar(g);
 			if(b.y<-b.radio || b.y>Ventana.screenSize.height-b.radio || b.x<-b.radio || b.x>Ventana.screenSize.width-b.radio){
 				muertas.add(b);
@@ -112,6 +90,9 @@ public class Personaje {
 	}
 
 	private void dibujarMotores(Graphics g) {
+		float x = Ventana.screenSize.width/2;
+		float y = Ventana.screenSize.height/2;
+		
 		if(arriba){
 			float radio = this.radio/4f;
 			for(int i=0;i<10;i++){
@@ -150,10 +131,11 @@ public class Personaje {
 	}
 	
 	public void disparoEspecial(){
-		
-		for(int i=0;i<18;i++){
-			float vx = (float) Math.cos(Math.toRadians(i*20));
-			float vy = (float) Math.sin(Math.toRadians(i*20));
+		float x = Ventana.screenSize.width/2;
+		float y = Ventana.screenSize.height/2;
+		for(int i=0;i<36;i++){
+			float vx = (float) Math.cos(Math.toRadians(i*10));
+			float vy = (float) Math.sin(Math.toRadians(i*10));
 			balas.add(new Bala(10,x,y,vx,vy));
 		}
 		

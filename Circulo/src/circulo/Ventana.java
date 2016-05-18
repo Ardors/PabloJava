@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
@@ -13,7 +14,7 @@ public class Ventana extends JFrame{
 	
 	public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	
-	Personaje c = new Personaje(50, 200,200);
+	Personaje c = new Personaje(30, 200,200);
 
 	public Ventana(){
 		setExtendedState(MAXIMIZED_BOTH);
